@@ -19,6 +19,7 @@ class TaskResource extends JsonResource
             'name' => $this->name,
             'status' => $this->status,
             'order' => $this->order,
+            'created_at' => $this->created_at,
             'sub_tasks' => TaskResource::collection($this->sub_tasks)
         ];
     }

@@ -2167,6 +2167,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   _this.tasks.push(response.data.data);
 
                   _this.tasks.sort(function (a, b) {
+                    if (a.order === b.order) {
+                      return new Date(b.created_at) - new Date(a.created_at);
+                    }
+
                     return a.order - b.order;
                   });
                 });
@@ -2335,7 +2339,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  props: ['task']
+  props: ['task'],
+  computed: {
+    taskDate: function taskDate() {
+      return new Date(this.task.created_at);
+    }
+  }
 });
 
 /***/ }),

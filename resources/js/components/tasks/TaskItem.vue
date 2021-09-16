@@ -6,6 +6,11 @@
 
 <script>
     export default {
-        props: ['task']
+        props: ['task'],
+        computed: {
+            taskDate() {
+                return new Date(this.task.created_at)
+            }
+        }
     }
 </script>

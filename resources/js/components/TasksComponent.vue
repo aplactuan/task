@@ -35,7 +35,12 @@
                     this.submitting = false;
                     this.submitted = true;
                     this.tasks.push(response.data.data);
-                    this.tasks.sort((a, b) => a.order - b.order);
+                    this.tasks.sort((a, b) => {
+                        if (a.order === b.order) {
+                            return new Date(b.created_at) - new Date(a.created_at);
+                        }
+                        return a.order - b.order;
+                    });
                 });
             }
         },
