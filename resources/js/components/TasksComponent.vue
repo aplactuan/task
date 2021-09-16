@@ -3,6 +3,7 @@
         <div class="card px-2 py-3">
             <div class="text-info" v-if="submitting">Submitting ..</div>
             <div class="text-success" v-if="submitted">Task Added</div>
+            <h2 class="text-xl font-bold mb-3">Add New Task</h2>
             <new-task @addTask="addTaskHandler"></new-task>
         </div>
         <div class="card px-2 py-3 mt-3">

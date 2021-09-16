@@ -2134,6 +2134,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
@@ -2209,6 +2210,120 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/tasks/EditTask.vue?vue&type=script&lang=js&":
+/*!*********************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/tasks/EditTask.vue?vue&type=script&lang=js& ***!
+  \*********************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _TaskStatus_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./TaskStatus.vue */ "./resources/js/components/tasks/TaskStatus.vue");
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  components: {
+    TaskStatus: _TaskStatus_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
+  },
+  data: function data() {
+    return {
+      form: {
+        name: '',
+        order: 0,
+        status: ''
+      },
+      taskNameValidity: 'pending'
+    };
+  },
+  props: ['task'],
+  mounted: function mounted() {
+    this.form.name = this.task.name;
+    this.form.order = this.task.order;
+    this.form.status = this.task.status;
+  },
+  emits: ['editTask'],
+  methods: {
+    submitTask: function submitTask() {
+      if (this.form.name.trim() === '') {
+        this.taNameValidity = 'invalid';
+        return;
+      }
+
+      if (this.form.status === '') {
+        return;
+      }
+
+      this.$emit('editTask', this.form);
+    },
+    validateInput: function validateInput() {
+      if (this.form.name === '') {
+        this.taskNameValidity = 'invalid';
+      } else {
+        this.taskNameValidity = 'valid';
+      }
+    }
+  }
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/tasks/NewTask.vue?vue&type=script&lang=js&":
 /*!********************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/tasks/NewTask.vue?vue&type=script&lang=js& ***!
@@ -2221,7 +2336,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony import */ var _TaskStatus_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./TaskStatus.vue */ "./resources/js/components/tasks/TaskStatus.vue");
-//
 //
 //
 //
@@ -2332,17 +2446,145 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _NewTask_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./NewTask.vue */ "./resources/js/components/tasks/NewTask.vue");
+/* harmony import */ var _EditTask_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./EditTask.vue */ "./resources/js/components/tasks/EditTask.vue");
+
+
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
 //
 //
 //
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  data: function data() {
+    return {
+      showAddSubTaskForm: false,
+      showEditForm: false,
+      subTasks: []
+    };
+  },
+  components: {
+    NewTask: _NewTask_vue__WEBPACK_IMPORTED_MODULE_1__["default"],
+    EditTask: _EditTask_vue__WEBPACK_IMPORTED_MODULE_2__["default"]
+  },
   props: ['task'],
-  computed: {
-    taskDate: function taskDate() {
-      return new Date(this.task.created_at);
+  name: 'task-item',
+  mounted: function mounted() {
+    this.subTasks = this.task.sub_tasks;
+  },
+  methods: {
+    displayAddSubTask: function displayAddSubTask() {
+      this.showEditForm = false;
+      this.showAddSubTaskForm = true;
+    },
+    displayEditTask: function displayEditTask() {
+      this.showEditForm = true;
+      this.showAddSubTaskForm = false;
+    },
+    addSubTask: function addSubTask(form) {
+      var _this = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
+        var formData;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                formData = _objectSpread(_objectSpread({}, form), {}, {
+                  parent_id: _this.task.id
+                });
+                _context.next = 3;
+                return axios.post('/tasks', formData).then(function (response) {
+                  _this.addSubTaskThenSort(response.data.data);
+                });
+
+              case 3:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee);
+      }))();
+    },
+    editTaskHandler: function editTaskHandler(form) {
+      var _this2 = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee2() {
+        var formData;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee2$(_context2) {
+          while (1) {
+            switch (_context2.prev = _context2.next) {
+              case 0:
+                formData = _objectSpread(_objectSpread({}, form), {}, {
+                  parent_id: _this2.task.id
+                });
+                _context2.next = 3;
+                return axios.put("/tasks/".concat(_this2.task.id), formData).then(function (response) {
+                  console.log(response);
+                });
+
+              case 3:
+              case "end":
+                return _context2.stop();
+            }
+          }
+        }, _callee2);
+      }))();
+    },
+    addSubTaskThenSort: function addSubTaskThenSort(subTask) {
+      this.subTasks.push(subTask);
+      this.subTasks.sort(function (a, b) {
+        if (a.order === b.order) {
+          return new Date(b.created_at) - new Date(a.created_at);
+        }
+
+        return a.order - b.order;
+      });
     }
   }
 });
@@ -2412,6 +2654,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: ['status'],
   emits: ['update:status'],
@@ -2420,12 +2663,15 @@ __webpack_require__.r(__webpack_exports__);
       customStatus: ''
     };
   },
+  mounted: function mounted() {
+    this.customStatus = this.status;
+  },
   methods: {
     activate: function activate(option) {
       this.$emit('update:status', option);
     },
     activateCustom: function activateCustom() {
-      this.$emit('update:status', this.customStatus);
+      this.$emit('update:status', this.$refs.customStatus.value);
     }
   }
 });
@@ -39161,6 +39407,45 @@ component.options.__file = "resources/js/components/TasksComponent.vue"
 
 /***/ }),
 
+/***/ "./resources/js/components/tasks/EditTask.vue":
+/*!****************************************************!*\
+  !*** ./resources/js/components/tasks/EditTask.vue ***!
+  \****************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _EditTask_vue_vue_type_template_id_0801833b___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./EditTask.vue?vue&type=template&id=0801833b& */ "./resources/js/components/tasks/EditTask.vue?vue&type=template&id=0801833b&");
+/* harmony import */ var _EditTask_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./EditTask.vue?vue&type=script&lang=js& */ "./resources/js/components/tasks/EditTask.vue?vue&type=script&lang=js&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+;
+var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _EditTask_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _EditTask_vue_vue_type_template_id_0801833b___WEBPACK_IMPORTED_MODULE_0__.render,
+  _EditTask_vue_vue_type_template_id_0801833b___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/tasks/EditTask.vue"
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
+
+/***/ }),
+
 /***/ "./resources/js/components/tasks/NewTask.vue":
 /*!***************************************************!*\
   !*** ./resources/js/components/tasks/NewTask.vue ***!
@@ -39312,6 +39597,22 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/components/tasks/EditTask.vue?vue&type=script&lang=js&":
+/*!*****************************************************************************!*\
+  !*** ./resources/js/components/tasks/EditTask.vue?vue&type=script&lang=js& ***!
+  \*****************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_EditTask_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./EditTask.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/tasks/EditTask.vue?vue&type=script&lang=js&");
+ /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_EditTask_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
 /***/ "./resources/js/components/tasks/NewTask.vue?vue&type=script&lang=js&":
 /*!****************************************************************************!*\
   !*** ./resources/js/components/tasks/NewTask.vue?vue&type=script&lang=js& ***!
@@ -39403,6 +39704,23 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_TasksComponent_vue_vue_type_template_id_8f69a68c___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
 /* harmony export */ });
 /* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_TasksComponent_vue_vue_type_template_id_8f69a68c___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./TasksComponent.vue?vue&type=template&id=8f69a68c& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/TasksComponent.vue?vue&type=template&id=8f69a68c&");
+
+
+/***/ }),
+
+/***/ "./resources/js/components/tasks/EditTask.vue?vue&type=template&id=0801833b&":
+/*!***********************************************************************************!*\
+  !*** ./resources/js/components/tasks/EditTask.vue?vue&type=template&id=0801833b& ***!
+  \***********************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_EditTask_vue_vue_type_template_id_0801833b___WEBPACK_IMPORTED_MODULE_0__.render),
+/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_EditTask_vue_vue_type_template_id_0801833b___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
+/* harmony export */ });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_EditTask_vue_vue_type_template_id_0801833b___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./EditTask.vue?vue&type=template&id=0801833b& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/tasks/EditTask.vue?vue&type=template&id=0801833b&");
 
 
 /***/ }),
@@ -39535,6 +39853,10 @@ var render = function() {
           ? _c("div", { staticClass: "text-success" }, [_vm._v("Task Added")])
           : _vm._e(),
         _vm._v(" "),
+        _c("h2", { staticClass: "text-xl font-bold mb-3" }, [
+          _vm._v("Add New Task")
+        ]),
+        _vm._v(" "),
         _c("new-task", { on: { addTask: _vm.addTaskHandler } })
       ],
       1
@@ -39551,6 +39873,207 @@ var render = function() {
   ])
 }
 var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/tasks/EditTask.vue?vue&type=template&id=0801833b&":
+/*!**************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/tasks/EditTask.vue?vue&type=template&id=0801833b& ***!
+  \**************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* binding */ render),
+/* harmony export */   "staticRenderFns": () => (/* binding */ staticRenderFns)
+/* harmony export */ });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [
+    _c(
+      "form",
+      {
+        on: {
+          submit: function($event) {
+            $event.preventDefault()
+            return _vm.submitTask.apply(null, arguments)
+          }
+        }
+      },
+      [
+        _c("div", { staticClass: "flex flex-wrap -mr-4" }, [
+          _c("div", { staticClass: "mr-4" }, [
+            _c(
+              "label",
+              {
+                staticClass: "block text-sm font-medium text-gray-700",
+                attrs: { for: "name" }
+              },
+              [_vm._v("Name")]
+            ),
+            _vm._v(" "),
+            _c("div", { staticClass: "mt-1 relative rounded-md shadow-sm" }, [
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model.trim",
+                    value: _vm.form.name,
+                    expression: "form.name",
+                    modifiers: { trim: true }
+                  }
+                ],
+                staticClass:
+                  "shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md",
+                attrs: {
+                  type: "text",
+                  name: "name",
+                  id: "name",
+                  placeholder: "Task Name"
+                },
+                domProps: { value: _vm.form.name },
+                on: {
+                  blur: [
+                    _vm.validateInput,
+                    function($event) {
+                      return _vm.$forceUpdate()
+                    }
+                  ],
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.$set(_vm.form, "name", $event.target.value.trim())
+                  }
+                }
+              }),
+              _vm._v(" "),
+              _vm.taskNameValidity === "invalid"
+                ? _c(
+                    "div",
+                    {
+                      staticClass:
+                        "absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none"
+                    },
+                    [
+                      _c(
+                        "svg",
+                        {
+                          staticClass: "h-5 w-5 text-red-500",
+                          attrs: {
+                            xmlns: "http://www.w3.org/2000/svg",
+                            viewBox: "0 0 20 20",
+                            fill: "currentColor",
+                            "aria-hidden": "true"
+                          }
+                        },
+                        [
+                          _c("path", {
+                            attrs: {
+                              "fill-rule": "evenodd",
+                              d:
+                                "M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z",
+                              "clip-rule": "evenodd"
+                            }
+                          })
+                        ]
+                      )
+                    ]
+                  )
+                : _vm._e()
+            ]),
+            _vm._v(" "),
+            _vm.taskNameValidity === "invalid"
+              ? _c("p", { staticClass: "mt-2 text-sm text-red-600" }, [
+                  _vm._v(
+                    "\n                    Task name must not be empty\n                "
+                  )
+                ])
+              : _vm._e()
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "mr-4" }, [
+            _c(
+              "label",
+              {
+                staticClass: "block text-sm font-medium text-gray-700",
+                attrs: { for: "order" }
+              },
+              [_vm._v("Order")]
+            ),
+            _vm._v(" "),
+            _c("div", { staticClass: "mt-1 relative rounded-md shadow-sm" }, [
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.form.order,
+                    expression: "form.order"
+                  }
+                ],
+                staticClass:
+                  "block w-full border border-red-300 text-red-900 placeholder-red-300 focus:outline-none focus:ring-red-500 focus:border-red-500 sm:text-sm rounded-md",
+                attrs: { type: "number", min: "0" },
+                domProps: { value: _vm.form.order },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.$set(_vm.form, "order", $event.target.value)
+                  }
+                }
+              })
+            ])
+          ])
+        ]),
+        _vm._v(" "),
+        _c("task-status", {
+          attrs: { status: _vm.form.status },
+          on: {
+            "update:status": function($event) {
+              _vm.form.status = $event
+            }
+          }
+        }),
+        _vm._v(" "),
+        _vm.form.status.trim() === ""
+          ? _c("p", { staticClass: "mt-2 text-sm text-red-600" }, [
+              _vm._v("\n            Task status must not be empty\n        ")
+            ])
+          : _vm._e(),
+        _vm._v(" "),
+        _vm._m(0)
+      ],
+      1
+    )
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "mt-2" }, [
+      _c(
+        "button",
+        {
+          staticClass:
+            "inline-flex items-center px-2.5 py-1.5 border border-transparent text-xs font-medium rounded shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500",
+          attrs: { type: "submit" }
+        },
+        [_vm._v("\n                Edit Task\n            ")]
+      )
+    ])
+  }
+]
 render._withStripped = true
 
 
@@ -39574,10 +40097,6 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", [
-    _c("h2", { staticClass: "text-xl font-bold mb-3" }, [
-      _vm._v("Add New Task")
-    ]),
-    _vm._v(" "),
     _c(
       "form",
       {
@@ -39778,7 +40297,154 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [_vm._v("\n    " + _vm._s(_vm.task.name) + "\n")])
+  return _c("div", [
+    _c(
+      "div",
+      { staticClass: "bg-white overflow-hidden shadow rounded-lg mb-3" },
+      [
+        _c("div", { staticClass: "p-2 flex justify-between" }, [
+          _c("h2", { staticClass: "font-bold text-m text-blue-500" }, [
+            _vm._v(_vm._s(_vm.task.name))
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "flex justify-right -mr-2" }, [
+            _c(
+              "a",
+              {
+                staticClass: "mr-2",
+                attrs: { href: "" },
+                on: {
+                  click: function($event) {
+                    $event.preventDefault()
+                    return _vm.displayEditTask.apply(null, arguments)
+                  }
+                }
+              },
+              [
+                _c(
+                  "svg",
+                  {
+                    staticClass: "h-5 w-5 text-blue-400",
+                    attrs: {
+                      xmlns: "http://www.w3.org/2000/svg",
+                      viewBox: "0 0 20 20",
+                      fill: "currentColor"
+                    }
+                  },
+                  [
+                    _c("path", {
+                      attrs: {
+                        d:
+                          "M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z"
+                      }
+                    })
+                  ]
+                )
+              ]
+            ),
+            _vm._v(" "),
+            _c(
+              "a",
+              {
+                staticClass: "mr-2",
+                attrs: { href: "" },
+                on: {
+                  click: function($event) {
+                    $event.preventDefault()
+                    return _vm.displayAddSubTask.apply(null, arguments)
+                  }
+                }
+              },
+              [
+                _c(
+                  "svg",
+                  {
+                    staticClass: "h-5 w-5 text-blue-400",
+                    attrs: {
+                      xmlns: "http://www.w3.org/2000/svg",
+                      viewBox: "0 0 20 20",
+                      fill: "currentColor"
+                    }
+                  },
+                  [
+                    _c("path", {
+                      attrs: {
+                        "fill-rule": "evenodd",
+                        d:
+                          "M10 18a8 8 0 100-16 8 8 0 000 16zm1-11a1 1 0 10-2 0v2H7a1 1 0 100 2h2v2a1 1 0 102 0v-2h2a1 1 0 100-2h-2V7z",
+                        "clip-rule": "evenodd"
+                      }
+                    })
+                  ]
+                )
+              ]
+            ),
+            _vm._v(" "),
+            _c("a", { staticClass: "mr-2", attrs: { href: "" } }, [
+              _c(
+                "svg",
+                {
+                  staticClass: "h-5 w-5 text-blue-400",
+                  attrs: {
+                    xmlns: "http://www.w3.org/2000/svg",
+                    viewBox: "0 0 20 20",
+                    fill: "currentColor"
+                  }
+                },
+                [
+                  _c("path", {
+                    attrs: {
+                      "fill-rule": "evenodd",
+                      d:
+                        "M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z",
+                      "clip-rule": "evenodd"
+                    }
+                  })
+                ]
+              )
+            ])
+          ])
+        ]),
+        _vm._v(" "),
+        _vm.showAddSubTaskForm
+          ? _c(
+              "div",
+              { staticClass: "px-2 py-1" },
+              [_c("new-task", { on: { addTask: _vm.addSubTask } })],
+              1
+            )
+          : _vm._e(),
+        _vm._v(" "),
+        _vm.showEditForm
+          ? _c(
+              "div",
+              { staticClass: "px-2 py-1" },
+              [
+                _c("edit-task", {
+                  attrs: { task: _vm.task },
+                  on: { editTask: _vm.editTaskHandler }
+                })
+              ],
+              1
+            )
+          : _vm._e()
+      ]
+    ),
+    _vm._v(" "),
+    _vm.subTasks.length > 0
+      ? _c(
+          "div",
+          { staticClass: "ml-3" },
+          _vm._l(_vm.subTasks, function(subtask) {
+            return _c("task-item", {
+              key: subtask.id,
+              attrs: { task: subtask }
+            })
+          }),
+          1
+        )
+      : _vm._e()
+  ])
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -39873,14 +40539,7 @@ var render = function() {
           _c("div", { staticClass: "flex items-center text-sm" }, [
             _c("div", { staticClass: "w-full sm:max-w-xs" }, [
               _c("input", {
-                directives: [
-                  {
-                    name: "model",
-                    rawName: "v-model",
-                    value: _vm.customStatus,
-                    expression: "customStatus"
-                  }
-                ],
+                ref: "customStatus",
                 staticClass:
                   "shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md",
                 attrs: {
@@ -39888,16 +40547,15 @@ var render = function() {
                   name: "status",
                   placeholder: "Custom Status"
                 },
-                domProps: { value: _vm.customStatus },
-                on: {
-                  change: _vm.activateCustom,
-                  input: function($event) {
-                    if ($event.target.composing) {
-                      return
-                    }
-                    _vm.customStatus = $event.target.value
-                  }
-                }
+                domProps: {
+                  value:
+                    _vm.status !== "cancelled" &&
+                    _vm.status !== "pending" &&
+                    _vm.status !== "complete"
+                      ? _vm.status
+                      : ""
+                },
+                on: { change: _vm.activateCustom }
               })
             ])
           ])

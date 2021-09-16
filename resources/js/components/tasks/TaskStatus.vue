@@ -38,11 +38,12 @@
             <div class="flex items-center text-sm">
                 <div class="w-full sm:max-w-xs">
                     <input type="text"
+                           ref="customStatus"
                            name="status"
                            class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md"
                            placeholder="Custom Status"
-                           v-model="customStatus"
                            @change="activateCustom"
+                           :value="(status !== 'cancelled' && status !== 'pending' && status !== 'complete') ? status : ''"
                     >
                 </div>
             </div>
@@ -59,12 +60,15 @@
               customStatus: ''
           }
         },
+        mounted() {
+          this.customStatus = this.status;
+        },
         methods: {
             activate(option) {
                 this.$emit('update:status', option);
             },
             activateCustom() {
-                this.$emit('update:status', this.customStatus);
+                this.$emit('update:status', this.$refs.customStatus.value);
             }
         }
     }

@@ -13,7 +13,7 @@
                                v-model.trim="form.name"
                                @blur="validateInput"
                         />
-                        <div class="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none" v-if="userNameValidity === 'invalid'">
+                        <div class="absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none" v-if="taskNameValidity === 'invalid'">
                             <!-- Heroicon name: solid/exclamation-circle -->
                             <svg class="h-5 w-5 text-red-500" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
                                 <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z" clip-rule="evenodd" />
@@ -22,7 +22,7 @@
                     </div>
                     <p
                         class="mt-2 text-sm text-red-600"
-                        v-if="userNameValidity === 'invalid'"
+                        v-if="taskNameValidity === 'invalid'"
                     >
                         Task name must not be empty
                     </p>
@@ -46,7 +46,7 @@
             <div class="mt-2">
                 <button type="submit"
                         class="inline-flex items-center px-2.5 py-1.5 border border-transparent text-xs font-medium rounded shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
-                    Add Task
+                    Edit Task
                 </button>
             </div>
         </form>
@@ -56,42 +56,45 @@
 <script>
 import TaskStatus from './TaskStatus.vue';
 
-    export default {
-        components: {
-          TaskStatus
-        },
-        data() {
-            return {
-                form: {
-                    name: '',
-                    order: 0,
-                    status: 'pending'
-                },
-                userNameValidity: 'pending'
-            }
-        },
-        emits: ['addTask'],
-        methods: {
-            submitTask() {
-                if (this.form.name.trim() === '') {
-                    this.userNameValidity = 'invalid';
-                    return;
-                }
-                if (this.form.status === '') {
-                    return;
-                }
-                this.$emit('addTask', this.form);
-                this.form.name = '';
-                this.form.order = 0;
-                this.form.status = 'pending';
+export default {
+    components: {
+        TaskStatus
+    },
+    data() {
+        return {
+            form: {
+                name: '',
+                order: 0,
+                status: ''
             },
-            validateInput() {
-                if (this.form.name === '') {
-                    this.userNameValidity = 'invalid';
-                } else {
-                    this.userNameValidity = 'valid';
-                }
+            taskNameValidity: 'pending'
+        }
+    },
+    props: ['task'],
+    mounted() {
+      this.form.name = this.task.name;
+      this.form.order = this.task.order;
+      this.form.status = this.task.status;
+    },
+    emits: ['editTask'],
+    methods: {
+        submitTask() {
+            if (this.form.name.trim() === '') {
+                this.taNameValidity = 'invalid';
+                return;
+            }
+            if (this.form.status === '') {
+                return;
+            }
+            this.$emit('editTask', this.form);
+        },
+        validateInput() {
+            if (this.form.name === '') {
+                this.taskNameValidity= 'invalid';
+            } else {
+                this.taskNameValidity = 'valid';
             }
         }
     }
+}
 </script>

@@ -17,13 +17,21 @@ class TaskController extends Controller
 
     public function store(Request $request)
     {
-        $task = new Task;
-        $task->user_id = $request->user()->id;
-        $task->status = $request->status ?? 'pending';
-        $task->order = $request->order ?? 0;
-        $task->parent_id = $request->parent_id ?? null;
-        $task->name = $request->name;
+        $task = $request->user()->tasks()->create([
+            'status' => $request->status ?? 'pending',
+            'order' => $request->order ?? 0,
+            'parent_id' => $request->parent_id ?? null,
+            'name' => $request->name
+        ]);
 
+        return new TaskResource($task);
+    }
+
+    public function update(Task $task, Request $request)
+    {
+        $task->name = $request->name;
+        $task->order = $request->order ?? 0;
+        $task->status = $request->status;
         $task->save();
 
         return new TaskResource($task);
