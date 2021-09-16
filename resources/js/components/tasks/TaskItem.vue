@@ -1,5 +1,11 @@
 <template>
     <div>
-        I am an item
+        {{ task.name }}
     </div>
 </template>
+
+<script>
+    export default {
+        props: ['task']
+    }
+</script>
