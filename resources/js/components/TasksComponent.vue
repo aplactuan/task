@@ -7,7 +7,13 @@
             <new-task @addTask="addTaskHandler"></new-task>
         </div>
         <div class="card px-2 py-3 mt-3">
-            <task-item v-for="task in tasks" :key="task.id" :task="task"></task-item>
+            <task-item v-for="task in tasks"
+                       :key="task.id"
+                       :task="task"
+                       @afterEdit="replaceTaskAndSort"
+                       @afterDelete="removeTask"
+            >
+            </task-item>
         </div>
     </div>
 </template>
@@ -36,13 +42,25 @@
                     this.submitting = false;
                     this.submitted = true;
                     this.tasks.push(response.data.data);
-                    this.tasks.sort((a, b) => {
-                        if (a.order === b.order) {
-                            return new Date(b.created_at) - new Date(a.created_at);
-                        }
-                        return a.order - b.order;
-                    });
+                    this.sortTasks();
                 });
+            },
+            sortTasks() {
+                this.tasks.sort((a, b) => {
+                    if (a.order === b.order) {
+                        return new Date(b.created_at) - new Date(a.created_at);
+                    }
+                    return a.order - b.order;
+                });
+            },
+            removeTask(task) {
+                const resIndex = this.tasks.findIndex(res => res.id === task.id);
+                this.tasks.splice(resIndex, 1);
+            },
+            replaceTaskAndSort(task) {
+               this.removeTask(task);
+               this.tasks.push(task);
+               this.sortTasks();
             }
         },
         async mounted() {

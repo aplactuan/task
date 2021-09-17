@@ -2135,6 +2135,12 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
@@ -2167,13 +2173,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
                   _this.tasks.push(response.data.data);
 
-                  _this.tasks.sort(function (a, b) {
-                    if (a.order === b.order) {
-                      return new Date(b.created_at) - new Date(a.created_at);
-                    }
-
-                    return a.order - b.order;
-                  });
+                  _this.sortTasks();
                 });
 
               case 4:
@@ -2183,6 +2183,26 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           }
         }, _callee);
       }))();
+    },
+    sortTasks: function sortTasks() {
+      this.tasks.sort(function (a, b) {
+        if (a.order === b.order) {
+          return new Date(b.created_at) - new Date(a.created_at);
+        }
+
+        return a.order - b.order;
+      });
+    },
+    removeTask: function removeTask(task) {
+      var resIndex = this.tasks.findIndex(function (res) {
+        return res.id === task.id;
+      });
+      this.tasks.splice(resIndex, 1);
+    },
+    replaceTaskAndSort: function replaceTaskAndSort(task) {
+      this.removeTask(task);
+      this.tasks.push(task);
+      this.sortTasks();
     }
   },
   mounted: function mounted() {
@@ -2498,6 +2518,12 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
@@ -2513,6 +2539,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     EditTask: _EditTask_vue__WEBPACK_IMPORTED_MODULE_2__["default"]
   },
   props: ['task'],
+  emits: ['afterEdit', 'afterDelete'],
   name: 'task-item',
   mounted: function mounted() {
     this.subTasks = this.task.sub_tasks;
@@ -2520,10 +2547,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   methods: {
     displayAddSubTask: function displayAddSubTask() {
       this.showEditForm = false;
-      this.showAddSubTaskForm = true;
+      this.showAddSubTaskForm = !this.showAddSubTaskForm;
     },
     displayEditTask: function displayEditTask() {
-      this.showEditForm = true;
+      this.showEditForm = !this.showEditForm;
       this.showAddSubTaskForm = false;
     },
     addSubTask: function addSubTask(form) {
@@ -2544,6 +2571,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 });
 
               case 3:
+                _this.showAddSubTaskForm = false;
+
+              case 4:
               case "end":
                 return _context.stop();
             }
@@ -2565,7 +2595,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 });
                 _context2.next = 3;
                 return axios.put("/tasks/".concat(_this2.task.id), formData).then(function (response) {
-                  console.log(response);
+                  _this2.$emit('afterEdit', response.data.data);
+
+                  _this2.showEditForm = false;
                 });
 
               case 3:
@@ -2576,8 +2608,39 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         }, _callee2);
       }))();
     },
-    addSubTaskThenSort: function addSubTaskThenSort(subTask) {
-      this.subTasks.push(subTask);
+    deleteTask: function deleteTask() {
+      var _this3 = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee3() {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee3$(_context3) {
+          while (1) {
+            switch (_context3.prev = _context3.next) {
+              case 0:
+                _context3.next = 2;
+                return axios["delete"]("/tasks/".concat(_this3.task.id)).then(function () {
+                  _this3.$emit('afterDelete', _this3.task);
+                });
+
+              case 2:
+              case "end":
+                return _context3.stop();
+            }
+          }
+        }, _callee3);
+      }))();
+    },
+    updateTasks: function updateTasks(task) {
+      this.removeTask(task);
+      this.subTasks.push(task);
+      this.sortTasks();
+    },
+    removeTask: function removeTask(task) {
+      var resIndex = this.subTasks.findIndex(function (res) {
+        return res.id === task.id;
+      });
+      this.subTasks.splice(resIndex, 1);
+    },
+    sortTasks: function sortTasks() {
       this.subTasks.sort(function (a, b) {
         if (a.order === b.order) {
           return new Date(b.created_at) - new Date(a.created_at);
@@ -2585,6 +2648,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
         return a.order - b.order;
       });
+    },
+    addSubTaskThenSort: function addSubTaskThenSort(subTask) {
+      this.subTasks.push(subTask);
     }
   }
 });
@@ -39866,7 +39932,11 @@ var render = function() {
       "div",
       { staticClass: "card px-2 py-3 mt-3" },
       _vm._l(_vm.tasks, function(task) {
-        return _c("task-item", { key: task.id, attrs: { task: task } })
+        return _c("task-item", {
+          key: task.id,
+          attrs: { task: task },
+          on: { afterEdit: _vm.replaceTaskAndSort, afterDelete: _vm.removeTask }
+        })
       }),
       1
     )
@@ -40380,29 +40450,42 @@ var render = function() {
               ]
             ),
             _vm._v(" "),
-            _c("a", { staticClass: "mr-2", attrs: { href: "" } }, [
-              _c(
-                "svg",
-                {
-                  staticClass: "h-5 w-5 text-blue-400",
-                  attrs: {
-                    xmlns: "http://www.w3.org/2000/svg",
-                    viewBox: "0 0 20 20",
-                    fill: "currentColor"
+            _c(
+              "a",
+              {
+                staticClass: "mr-2",
+                attrs: { href: "" },
+                on: {
+                  click: function($event) {
+                    $event.preventDefault()
+                    return _vm.deleteTask.apply(null, arguments)
                   }
-                },
-                [
-                  _c("path", {
+                }
+              },
+              [
+                _c(
+                  "svg",
+                  {
+                    staticClass: "h-5 w-5 text-blue-400",
                     attrs: {
-                      "fill-rule": "evenodd",
-                      d:
-                        "M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z",
-                      "clip-rule": "evenodd"
+                      xmlns: "http://www.w3.org/2000/svg",
+                      viewBox: "0 0 20 20",
+                      fill: "currentColor"
                     }
-                  })
-                ]
-              )
-            ])
+                  },
+                  [
+                    _c("path", {
+                      attrs: {
+                        "fill-rule": "evenodd",
+                        d:
+                          "M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z",
+                        "clip-rule": "evenodd"
+                      }
+                    })
+                  ]
+                )
+              ]
+            )
           ])
         ]),
         _vm._v(" "),
@@ -40438,7 +40521,8 @@ var render = function() {
           _vm._l(_vm.subTasks, function(subtask) {
             return _c("task-item", {
               key: subtask.id,
-              attrs: { task: subtask }
+              attrs: { task: subtask },
+              on: { afterEdit: _vm.updateTasks, afterDelete: _vm.removeTask }
             })
           }),
           1

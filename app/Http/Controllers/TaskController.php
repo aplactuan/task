@@ -8,10 +8,10 @@ use Illuminate\Http\Request;
 
 class TaskController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
         return TaskResource::collection(
-          Task::with('sub_tasks')->parents()->ordered()->orderBy('created_at', 'desc')->get()
+          Task::with('sub_tasks')->where('user_id', $request->user()->id)->parents()->ordered()->orderBy('created_at', 'desc')->get()
         );
     }
 
@@ -35,5 +35,10 @@ class TaskController extends Controller
         $task->save();
 
         return new TaskResource($task);
+    }
+
+    public function destroy(Task $task)
+    {
+        return $task->delete();
     }
 }
