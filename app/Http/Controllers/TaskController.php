@@ -29,6 +29,9 @@ class TaskController extends Controller
 
     public function update(Task $task, Request $request)
     {
+        if ($request->user()->cannot('update', $task)) {
+            abort(403);
+        }
         $task->name = $request->name;
         $task->order = $request->order ?? 0;
         $task->status = $request->status;
@@ -37,8 +40,11 @@ class TaskController extends Controller
         return new TaskResource($task);
     }
 
-    public function destroy(Task $task)
+    public function destroy(Task $task, Request $request)
     {
+        if ($request->user()->cannot('delete', $task)) {
+            abort(403);
+        }
         return $task->delete();
     }
 }
