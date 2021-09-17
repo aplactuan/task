@@ -21,6 +21,7 @@ window.Vue = require('vue').default;
 
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 Vue.component('tasks-component', require('./components/TasksComponent').default);
+Vue.component('trash-tasks', require('./components/TrashTasks').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
