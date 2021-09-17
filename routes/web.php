@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\DeletedTaskController;
+use App\Http\Controllers\ExportController;
 use App\Http\Controllers\TaskController;
 use Illuminate\Support\Facades\Route;
 
@@ -27,3 +28,6 @@ Route::get('/bin', [DeletedTaskController::class, 'show'])->name('bin');
 Route::get('/deleted-tasks', [DeletedTaskController::class, 'index']);
 Route::put('/deleted-tasks/restore/{id}', [DeletedTaskController::class, 'restore']);
 Route::put('/deleted-tasks/delete/{id}', [DeletedTaskController::class, 'delete']);
+Route::get('/export/excel', [ExportController::class, 'exportAsExcel'])->name('export.excel');
+Route::get('/export/csv', [ExportController::class, 'exportAsCsv'])->name('export.csv');
+
