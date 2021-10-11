@@ -1,7 +1,7 @@
 <template>
     <div>
         <div class="h-24">
-            <pie-chart ref="chart" :chart-data="chartData" :options="chartOptions" :width="100" :height="100"></pie-chart>
+            <pie-chart :chart-data="chartData" :options="chartOptions" :width="100" :height="100"></pie-chart>
         </div>
 
         <div>
@@ -85,7 +85,6 @@
                     this.complete = response.data.complete;
                     this.incomplete = response.data.incomplete;
                     this.chartData.datasets[0].data = [response.data.complete, response.data.incomplete];
-                    this.$refs.chart.render()
                     this.sortTasks();
                 });
             },
@@ -114,14 +113,12 @@
                this.complete = complete;
                this.incomplete = incomplete;
                 this.chartData.datasets[0].data = [complete, incomplete];
-                this.$refs.chart.render()
                this.sortTasks();
             },
             updateCountHandler(complete, incomplete) {
                 this.complete = complete;
                 this.incomplete = incomplete;
                 this.chartData.datasets[0].data = [complete, incomplete];
-                this.$refs.chart.render()
             }
         },
 
@@ -131,7 +128,6 @@
                 this.complete = response.data.complete;
                 this.incomplete = response.data.incomplete;
                 this.chartData.datasets[0].data = [response.data.complete, response.data.incomplete];
-                this.$refs.chart.render()
             });
             await axios.get('/custom-statuses').then(response => this.custom_statuses = response.data.data);
         }

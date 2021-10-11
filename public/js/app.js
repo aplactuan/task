@@ -2217,8 +2217,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                   _this.incomplete = response.data.incomplete;
                   _this.chartData.datasets[0].data = [response.data.complete, response.data.incomplete];
 
-                  _this.$refs.chart.render();
-
                   _this.sortTasks();
                 });
 
@@ -2275,14 +2273,12 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       this.complete = complete;
       this.incomplete = incomplete;
       this.chartData.datasets[0].data = [complete, incomplete];
-      this.$refs.chart.render();
       this.sortTasks();
     },
     updateCountHandler: function updateCountHandler(complete, incomplete) {
       this.complete = complete;
       this.incomplete = incomplete;
       this.chartData.datasets[0].data = [complete, incomplete];
-      this.$refs.chart.render();
     }
   },
   mounted: function mounted() {
@@ -2299,8 +2295,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 _this3.complete = response.data.complete;
                 _this3.incomplete = response.data.incomplete;
                 _this3.chartData.datasets[0].data = [response.data.complete, response.data.incomplete];
-
-                _this3.$refs.chart.render();
               });
 
             case 2:
@@ -71589,7 +71583,6 @@ var render = function() {
       { staticClass: "h-24" },
       [
         _c("pie-chart", {
-          ref: "chart",
           attrs: {
             "chart-data": _vm.chartData,
             options: _vm.chartOptions,
