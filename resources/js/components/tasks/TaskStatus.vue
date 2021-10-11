@@ -1,8 +1,8 @@
 <template>
-    <div class="flex flex-wrap item-center bg-white rounded-md mt-3">
+    <div class="block lg:flex flex-wrap item-center bg-white rounded-md mt-3">
         <div
             @click="activate('pending')"
-            class="rounded-md relative border p-2 flex-1 cursor-pointer focus:outline-none ml-2"
+            class="lg:w-1/4 rounded-md relative border p-2 flex-1 cursor-pointer focus:outline-none ml-2"
             :class="{active: status === 'pending'}"
         >
             <div class="flex items-center text-sm">
@@ -11,41 +11,31 @@
         </div>
 
         <div
-            @click="activate('complete')"
-            class="rounded-md relative border p-2 flex-1 cursor-pointer focus:outline-none ml-2"
-            :class="{active: status === 'complete'}"
-        >
-            <div class="flex items-center text-sm">
-                <span class="ml-3 font-medium">Complete</span>
-            </div>
-        </div>
-
-        <div
             @click="activate('cancelled')"
-            class="rounded-md relative border p-2 flex-1 cursor-pointer focus:outline-none ml-2"
+            class="lg:w-1/4 rounded-md relative border p-2 flex-1 cursor-pointer focus:outline-none ml-2"
             :class="{active: status === 'cancelled'}"
         >
             <div class="flex items-center text-sm">
                 <span class="ml-3 font-medium">Cancelled</span>
             </div>
         </div>
-
         <div
-            @click="activate(customStatus)"
-            class="rounded-md relative border p-2 flex-1 cursor-pointer focus:outline-none ml-2"
-            :class="{active: status !== 'cancelled' && status !== 'pending' && status !== 'complete'}"
+            v-for="custom_status in custom_statuses"
+            @click="activate(custom_status.value)"
+            class="lg:w-1/4 rounded-md relative border p-2 flex-1 cursor-pointer focus:outline-none ml-2"
+            :class="{active: status === custom_status.value}"
         >
             <div class="flex items-center text-sm">
-                <div class="w-full sm:max-w-xs">
-                    <input type="text"
-                           ref="customStatus"
-                           name="status"
-                           class="shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md"
-                           placeholder="Custom Status"
-                           @change="activateCustom"
-                           :value="(status !== 'cancelled' && status !== 'pending' && status !== 'complete') ? status : ''"
-                    >
-                </div>
+                <span class="ml-3 font-medium">{{ custom_status.name }}</span>
+            </div>
+        </div>
+        <div
+            @click="activate('complete')"
+            class="lg:w-1/4 rounded-md relative border p-2 flex-1 cursor-pointer focus:outline-none ml-2"
+            :class="{active: status === 'complete'}"
+        >
+            <div class="flex items-center text-sm">
+                <span class="ml-3 font-medium">Complete</span>
             </div>
         </div>
     </div>
@@ -53,7 +43,7 @@
 
 <script>
     export default {
-        props: ['status'],
+        props: ['status', 'custom_statuses'],
         emits: ['update:status'],
         data() {
           return {

@@ -25,13 +25,14 @@
                 <new-task @addTask="addSubTask"></new-task>
             </div>
             <div class="px-2 py-1" v-if="showEditForm">
-                <edit-task :task="task" @editTask="editTaskHandler"></edit-task>
+                <edit-task :task="task" @editTask="editTaskHandler" :custom_statuses="custom_statuses"></edit-task>
             </div>
         </div>
         <div class="ml-3" v-if="subTasks.length > 0">
             <task-item v-for="subtask in subTasks"
                        :key="subtask.id"
                        :task="subtask"
+                       :custom_statuses="custom_statuses"
                        @afterEdit="updateTasks"
                        @afterDelete="removeTask"
             >
@@ -55,7 +56,7 @@
           NewTask,
           EditTask
         },
-        props: ['task'],
+        props: ['task', 'custom_statuses'],
         emits: ['afterEdit', 'afterDelete'],
         name: 'task-item',
         mounted() {

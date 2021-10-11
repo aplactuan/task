@@ -39,7 +39,7 @@
                     </div>
                 </div>
             </div>
-            <task-status :status="form.status" @update:status="form.status = $event"></task-status>
+            <task-status :status="form.status" @update:status="form.status = $event" :custom_statuses="custom_statuses"></task-status>
             <p class="mt-2 text-sm text-red-600" v-if="form.status.trim() === ''">
                 Task status must not be empty
             </p>
@@ -70,7 +70,7 @@ export default {
             taskNameValidity: 'pending'
         }
     },
-    props: ['task'],
+    props: ['task', 'custom_statuses'],
     mounted() {
       this.form.name = this.task.name;
       this.form.order = this.task.order;

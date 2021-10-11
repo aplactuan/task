@@ -47,4 +47,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(Task::class);
     }
+
+    public function custom_statuses()
+    {
+        return $this->hasMany(CustomStatus::class);
+    }
 }

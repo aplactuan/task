@@ -39,7 +39,7 @@
                     </div>
                 </div>
             </div>
-            <task-status :status="form.status" @update:status="form.status = $event"></task-status>
+            <task-status :status="form.status" @update:status="form.status = $event" :custom_statuses="custom_status"></task-status>
             <p class="mt-2 text-sm text-red-600" v-if="form.status.trim() === ''">
                 Task status must not be empty
             </p>
@@ -70,6 +70,7 @@ import TaskStatus from './TaskStatus.vue';
                 userNameValidity: 'pending'
             }
         },
+        props: ['custom_status'],
         emits: ['addTask'],
         methods: {
             submitTask() {

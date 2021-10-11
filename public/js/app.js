@@ -2115,6 +2115,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _tasks_NewTask_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./tasks/NewTask.vue */ "./resources/js/components/tasks/NewTask.vue");
 /* harmony import */ var _tasks_TaskItem_vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./tasks/TaskItem.vue */ "./resources/js/components/tasks/TaskItem.vue");
+/* harmony import */ var _tasks_NewStatus_vue__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./tasks/NewStatus.vue */ "./resources/js/components/tasks/NewStatus.vue");
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
@@ -2141,18 +2142,32 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   components: {
     NewTask: _tasks_NewTask_vue__WEBPACK_IMPORTED_MODULE_1__["default"],
-    TaskItem: _tasks_TaskItem_vue__WEBPACK_IMPORTED_MODULE_2__["default"]
+    TaskItem: _tasks_TaskItem_vue__WEBPACK_IMPORTED_MODULE_2__["default"],
+    NewStatus: _tasks_NewStatus_vue__WEBPACK_IMPORTED_MODULE_3__["default"]
   },
   data: function data() {
     return {
       submitting: false,
       submitted: false,
-      tasks: []
+      tasks: [],
+      custom_statuses: [],
+      newStatusIsOpen: false
     };
   },
   methods: {
@@ -2184,6 +2199,30 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         }, _callee);
       }))();
     },
+    addCustomStatusHandler: function addCustomStatusHandler(form) {
+      var _this2 = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee2() {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee2$(_context2) {
+          while (1) {
+            switch (_context2.prev = _context2.next) {
+              case 0:
+                console.log(form);
+                _context2.next = 3;
+                return axios.post('/custom-statuses', form).then(function (response) {
+                  _this2.custom_statuses.push(response.data.data);
+
+                  _this2.newStatusIsOpen = false;
+                });
+
+              case 3:
+              case "end":
+                return _context2.stop();
+            }
+          }
+        }, _callee2);
+      }))();
+    },
     sortTasks: function sortTasks() {
       this.tasks.sort(function (a, b) {
         if (a.order === b.order) {
@@ -2206,24 +2245,30 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     }
   },
   mounted: function mounted() {
-    var _this2 = this;
+    var _this3 = this;
 
-    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee2() {
-      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee2$(_context2) {
+    return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee3() {
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee3$(_context3) {
         while (1) {
-          switch (_context2.prev = _context2.next) {
+          switch (_context3.prev = _context3.next) {
             case 0:
-              _context2.next = 2;
+              _context3.next = 2;
               return axios.get('/tasks').then(function (response) {
-                return _this2.tasks = response.data.data;
+                return _this3.tasks = response.data.data;
               });
 
             case 2:
+              _context3.next = 4;
+              return axios.get('/custom-statuses').then(function (response) {
+                return _this3.custom_statuses = response.data.data;
+              });
+
+            case 4:
             case "end":
-              return _context2.stop();
+              return _context3.stop();
           }
         }
-      }, _callee2);
+      }, _callee3);
     }))();
   }
 });
@@ -2480,7 +2525,7 @@ __webpack_require__.r(__webpack_exports__);
       taskNameValidity: 'pending'
     };
   },
-  props: ['task'],
+  props: ['task', 'custom_statuses'],
   mounted: function mounted() {
     this.form.name = this.task.name;
     this.form.order = this.task.order;
@@ -2506,6 +2551,111 @@ __webpack_require__.r(__webpack_exports__);
       } else {
         this.taskNameValidity = 'valid';
       }
+    }
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/tasks/NewStatus.vue?vue&type=script&lang=js&":
+/*!**********************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/tasks/NewStatus.vue?vue&type=script&lang=js& ***!
+  \**********************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  data: function data() {
+    return {
+      form: {
+        name: ''
+      },
+      statusNameValidity: 'pending'
+    };
+  },
+  props: {
+    isOpen: {
+      type: Boolean,
+      "default": false
+    }
+  },
+  emits: ['closeModal', 'addCustomStatus'],
+  methods: {
+    closeStatusModal: function closeStatusModal() {
+      this.$emit('closeModal');
+    },
+    validateInput: function validateInput() {
+      if (this.form.name === '') {
+        this.statusNameValidity = 'invalid';
+      } else {
+        this.statusNameValidity = 'valid';
+      }
+    },
+    submitNewStatus: function submitNewStatus() {
+      if (this.form.name.trim() === '') {
+        this.userNameValidity = 'invalid';
+        return;
+      }
+
+      this.$emit('addCustomStatus', this.form);
     }
   }
 });
@@ -2594,6 +2744,7 @@ __webpack_require__.r(__webpack_exports__);
       userNameValidity: 'pending'
     };
   },
+  props: ['custom_status'],
   emits: ['addTask'],
   methods: {
     submitTask: function submitTask() {
@@ -2692,6 +2843,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
@@ -2706,7 +2858,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     NewTask: _NewTask_vue__WEBPACK_IMPORTED_MODULE_1__["default"],
     EditTask: _EditTask_vue__WEBPACK_IMPORTED_MODULE_2__["default"]
   },
-  props: ['task'],
+  props: ['task', 'custom_statuses'],
   emits: ['afterEdit', 'afterDelete'],
   name: 'task-item',
   mounted: function mounted() {
@@ -2879,18 +3031,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  props: ['status'],
+  props: ['status', 'custom_statuses'],
   emits: ['update:status'],
   data: function data() {
     return {
@@ -39759,6 +39901,45 @@ component.options.__file = "resources/js/components/tasks/EditTask.vue"
 
 /***/ }),
 
+/***/ "./resources/js/components/tasks/NewStatus.vue":
+/*!*****************************************************!*\
+  !*** ./resources/js/components/tasks/NewStatus.vue ***!
+  \*****************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _NewStatus_vue_vue_type_template_id_4893af54___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./NewStatus.vue?vue&type=template&id=4893af54& */ "./resources/js/components/tasks/NewStatus.vue?vue&type=template&id=4893af54&");
+/* harmony import */ var _NewStatus_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./NewStatus.vue?vue&type=script&lang=js& */ "./resources/js/components/tasks/NewStatus.vue?vue&type=script&lang=js&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! !../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+;
+var component = (0,_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _NewStatus_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _NewStatus_vue_vue_type_template_id_4893af54___WEBPACK_IMPORTED_MODULE_0__.render,
+  _NewStatus_vue_vue_type_template_id_4893af54___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns,
+  false,
+  null,
+  null,
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/tasks/NewStatus.vue"
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (component.exports);
+
+/***/ }),
+
 /***/ "./resources/js/components/tasks/NewTask.vue":
 /*!***************************************************!*\
   !*** ./resources/js/components/tasks/NewTask.vue ***!
@@ -39958,6 +40139,22 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/components/tasks/NewStatus.vue?vue&type=script&lang=js&":
+/*!******************************************************************************!*\
+  !*** ./resources/js/components/tasks/NewStatus.vue?vue&type=script&lang=js& ***!
+  \******************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_NewStatus_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./NewStatus.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5[0].rules[0].use[0]!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/tasks/NewStatus.vue?vue&type=script&lang=js&");
+ /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_node_modules_babel_loader_lib_index_js_clonedRuleSet_5_0_rules_0_use_0_node_modules_vue_loader_lib_index_js_vue_loader_options_NewStatus_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
 /***/ "./resources/js/components/tasks/NewTask.vue?vue&type=script&lang=js&":
 /*!****************************************************************************!*\
   !*** ./resources/js/components/tasks/NewTask.vue?vue&type=script&lang=js& ***!
@@ -40104,6 +40301,23 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/components/tasks/NewStatus.vue?vue&type=template&id=4893af54&":
+/*!************************************************************************************!*\
+  !*** ./resources/js/components/tasks/NewStatus.vue?vue&type=template&id=4893af54& ***!
+  \************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_NewStatus_vue_vue_type_template_id_4893af54___WEBPACK_IMPORTED_MODULE_0__.render),
+/* harmony export */   "staticRenderFns": () => (/* reexport safe */ _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_NewStatus_vue_vue_type_template_id_4893af54___WEBPACK_IMPORTED_MODULE_0__.staticRenderFns)
+/* harmony export */ });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_NewStatus_vue_vue_type_template_id_4893af54___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib/index.js??vue-loader-options!./NewStatus.vue?vue&type=template&id=4893af54& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/tasks/NewStatus.vue?vue&type=template&id=4893af54&");
+
+
+/***/ }),
+
 /***/ "./resources/js/components/tasks/NewTask.vue?vue&type=template&id=167e612e&":
 /*!**********************************************************************************!*\
   !*** ./resources/js/components/tasks/NewTask.vue?vue&type=template&id=167e612e& ***!
@@ -40222,6 +40436,36 @@ var render = function() {
   return _c("div", [
     _c(
       "div",
+      [
+        _c(
+          "a",
+          {
+            attrs: { href: "" },
+            on: {
+              click: function($event) {
+                $event.preventDefault()
+                _vm.newStatusIsOpen = true
+              }
+            }
+          },
+          [_vm._v("New Status")]
+        ),
+        _vm._v(" "),
+        _c("new-status", {
+          attrs: { "is-open": _vm.newStatusIsOpen },
+          on: {
+            closeModal: function($event) {
+              _vm.newStatusIsOpen = false
+            },
+            addCustomStatus: _vm.addCustomStatusHandler
+          }
+        })
+      ],
+      1
+    ),
+    _vm._v(" "),
+    _c(
+      "div",
       { staticClass: "card px-2 py-3" },
       [
         _vm.submitting
@@ -40236,7 +40480,10 @@ var render = function() {
           _vm._v("Add New Task")
         ]),
         _vm._v(" "),
-        _c("new-task", { on: { addTask: _vm.addTaskHandler } })
+        _c("new-task", {
+          attrs: { custom_status: _vm.custom_statuses },
+          on: { addTask: _vm.addTaskHandler }
+        })
       ],
       1
     ),
@@ -40247,7 +40494,7 @@ var render = function() {
       _vm._l(_vm.tasks, function(task) {
         return _c("task-item", {
           key: task.id,
-          attrs: { task: task },
+          attrs: { custom_statuses: _vm.custom_statuses, task: task },
           on: { afterEdit: _vm.replaceTaskAndSort, afterDelete: _vm.removeTask }
         })
       }),
@@ -40559,7 +40806,10 @@ var render = function() {
         ]),
         _vm._v(" "),
         _c("task-status", {
-          attrs: { status: _vm.form.status },
+          attrs: {
+            status: _vm.form.status,
+            custom_statuses: _vm.custom_statuses
+          },
           on: {
             "update:status": function($event) {
               _vm.form.status = $event
@@ -40597,6 +40847,233 @@ var staticRenderFns = [
     ])
   }
 ]
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/tasks/NewStatus.vue?vue&type=template&id=4893af54&":
+/*!***************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib/index.js??vue-loader-options!./resources/js/components/tasks/NewStatus.vue?vue&type=template&id=4893af54& ***!
+  \***************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* binding */ render),
+/* harmony export */   "staticRenderFns": () => (/* binding */ staticRenderFns)
+/* harmony export */ });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [
+    _vm.isOpen
+      ? _c(
+          "div",
+          {
+            staticClass: "fixed z-10 inset-0 overflow-y-auto",
+            attrs: {
+              "aria-labelledby": "modal-title",
+              role: "dialog",
+              "aria-modal": "true"
+            }
+          },
+          [
+            _c(
+              "div",
+              {
+                staticClass:
+                  "flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0"
+              },
+              [
+                _c("div", {
+                  staticClass:
+                    "fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity",
+                  attrs: { "aria-hidden": "true" }
+                }),
+                _vm._v(" "),
+                _c(
+                  "span",
+                  {
+                    staticClass:
+                      "hidden sm:inline-block sm:align-middle sm:h-screen",
+                    attrs: { "aria-hidden": "true" }
+                  },
+                  [_vm._v("​")]
+                ),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  {
+                    staticClass:
+                      "inline-block bg-white rounded-lg px-4 pt-5 pb-4 text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-sm sm:w-full sm:p-6"
+                  },
+                  [
+                    _c(
+                      "form",
+                      {
+                        on: {
+                          submit: function($event) {
+                            $event.preventDefault()
+                            return _vm.submitNewStatus.apply(null, arguments)
+                          }
+                        }
+                      },
+                      [
+                        _c(
+                          "label",
+                          {
+                            staticClass:
+                              "block text-sm font-medium text-gray-700",
+                            attrs: { for: "name" }
+                          },
+                          [_vm._v("Name")]
+                        ),
+                        _vm._v(" "),
+                        _c(
+                          "div",
+                          { staticClass: "mt-1 relative rounded-md shadow-sm" },
+                          [
+                            _c("input", {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model.trim",
+                                  value: _vm.form.name,
+                                  expression: "form.name",
+                                  modifiers: { trim: true }
+                                }
+                              ],
+                              staticClass:
+                                "shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md",
+                              attrs: {
+                                type: "text",
+                                name: "name",
+                                id: "name",
+                                placeholder: "Task Name"
+                              },
+                              domProps: { value: _vm.form.name },
+                              on: {
+                                blur: [
+                                  _vm.validateInput,
+                                  function($event) {
+                                    return _vm.$forceUpdate()
+                                  }
+                                ],
+                                input: function($event) {
+                                  if ($event.target.composing) {
+                                    return
+                                  }
+                                  _vm.$set(
+                                    _vm.form,
+                                    "name",
+                                    $event.target.value.trim()
+                                  )
+                                }
+                              }
+                            }),
+                            _vm._v(" "),
+                            _vm.statusNameValidity === "invalid"
+                              ? _c(
+                                  "div",
+                                  {
+                                    staticClass:
+                                      "absolute inset-y-0 right-0 pr-3 flex items-center pointer-events-none"
+                                  },
+                                  [
+                                    _c(
+                                      "svg",
+                                      {
+                                        staticClass: "h-5 w-5 text-red-500",
+                                        attrs: {
+                                          xmlns: "http://www.w3.org/2000/svg",
+                                          viewBox: "0 0 20 20",
+                                          fill: "currentColor",
+                                          "aria-hidden": "true"
+                                        }
+                                      },
+                                      [
+                                        _c("path", {
+                                          attrs: {
+                                            "fill-rule": "evenodd",
+                                            d:
+                                              "M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z",
+                                            "clip-rule": "evenodd"
+                                          }
+                                        })
+                                      ]
+                                    )
+                                  ]
+                                )
+                              : _vm._e(),
+                            _vm._v(" "),
+                            _vm.statusNameValidity === "invalid"
+                              ? _c(
+                                  "p",
+                                  { staticClass: "mt-2 text-sm text-red-600" },
+                                  [
+                                    _vm._v(
+                                      "\n                            Status name must not be empty\n                        "
+                                    )
+                                  ]
+                                )
+                              : _vm._e()
+                          ]
+                        ),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "mt-5 sm:mt-6 flex" }, [
+                          _c(
+                            "button",
+                            {
+                              staticClass:
+                                "inline-flex justify-center w-full rounded-md border border-transparent shadow-sm px-4 py-2 bg-indigo-600 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:text-sm",
+                              attrs: { type: "submit" }
+                            },
+                            [
+                              _vm._v(
+                                "\n                            Save\n                        "
+                              )
+                            ]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "button",
+                            {
+                              staticClass:
+                                "inline-flex justify-center w-full rounded-md border border-transparent shadow-sm px-4 py-2 bg-indigo-600 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:text-sm",
+                              attrs: { type: "button" },
+                              on: {
+                                click: function($event) {
+                                  $event.preventDefault()
+                                  return _vm.closeStatusModal.apply(
+                                    null,
+                                    arguments
+                                  )
+                                }
+                              }
+                            },
+                            [
+                              _vm._v(
+                                "\n                            Cancel\n                        "
+                              )
+                            ]
+                          )
+                        ])
+                      ]
+                    )
+                  ]
+                )
+              ]
+            )
+          ]
+        )
+      : _vm._e()
+  ])
+}
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -40760,7 +41237,10 @@ var render = function() {
         ]),
         _vm._v(" "),
         _c("task-status", {
-          attrs: { status: _vm.form.status },
+          attrs: {
+            status: _vm.form.status,
+            custom_statuses: _vm.custom_status
+          },
           on: {
             "update:status": function($event) {
               _vm.form.status = $event
@@ -40957,7 +41437,10 @@ var render = function() {
               { staticClass: "px-2 py-1" },
               [
                 _c("edit-task", {
-                  attrs: { task: _vm.task },
+                  attrs: {
+                    task: _vm.task,
+                    custom_statuses: _vm.custom_statuses
+                  },
                   on: { editTask: _vm.editTaskHandler }
                 })
               ],
@@ -40974,7 +41457,7 @@ var render = function() {
           _vm._l(_vm.subTasks, function(subtask) {
             return _c("task-item", {
               key: subtask.id,
-              attrs: { task: subtask },
+              attrs: { task: subtask, custom_statuses: _vm.custom_statuses },
               on: { afterEdit: _vm.updateTasks, afterDelete: _vm.removeTask }
             })
           }),
@@ -41008,13 +41491,16 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "div",
-    { staticClass: "flex flex-wrap item-center bg-white rounded-md mt-3" },
+    {
+      staticClass:
+        "block lg:flex flex-wrap item-center bg-white rounded-md mt-3"
+    },
     [
       _c(
         "div",
         {
           staticClass:
-            "rounded-md relative border p-2 flex-1 cursor-pointer focus:outline-none ml-2",
+            "lg:w-1/4 rounded-md relative border p-2 flex-1 cursor-pointer focus:outline-none ml-2",
           class: { active: _vm.status === "pending" },
           on: {
             click: function($event) {
@@ -41029,22 +41515,7 @@ var render = function() {
         "div",
         {
           staticClass:
-            "rounded-md relative border p-2 flex-1 cursor-pointer focus:outline-none ml-2",
-          class: { active: _vm.status === "complete" },
-          on: {
-            click: function($event) {
-              return _vm.activate("complete")
-            }
-          }
-        },
-        [_vm._m(1)]
-      ),
-      _vm._v(" "),
-      _c(
-        "div",
-        {
-          staticClass:
-            "rounded-md relative border p-2 flex-1 cursor-pointer focus:outline-none ml-2",
+            "lg:w-1/4 rounded-md relative border p-2 flex-1 cursor-pointer focus:outline-none ml-2",
           class: { active: _vm.status === "cancelled" },
           on: {
             click: function($event) {
@@ -41052,53 +41523,48 @@ var render = function() {
             }
           }
         },
-        [_vm._m(2)]
+        [_vm._m(1)]
       ),
+      _vm._v(" "),
+      _vm._l(_vm.custom_statuses, function(custom_status) {
+        return _c(
+          "div",
+          {
+            staticClass:
+              "lg:w-1/4 rounded-md relative border p-2 flex-1 cursor-pointer focus:outline-none ml-2",
+            class: { active: _vm.status === custom_status.value },
+            on: {
+              click: function($event) {
+                return _vm.activate(custom_status.value)
+              }
+            }
+          },
+          [
+            _c("div", { staticClass: "flex items-center text-sm" }, [
+              _c("span", { staticClass: "ml-3 font-medium" }, [
+                _vm._v(_vm._s(custom_status.name))
+              ])
+            ])
+          ]
+        )
+      }),
       _vm._v(" "),
       _c(
         "div",
         {
           staticClass:
-            "rounded-md relative border p-2 flex-1 cursor-pointer focus:outline-none ml-2",
-          class: {
-            active:
-              _vm.status !== "cancelled" &&
-              _vm.status !== "pending" &&
-              _vm.status !== "complete"
-          },
+            "lg:w-1/4 rounded-md relative border p-2 flex-1 cursor-pointer focus:outline-none ml-2",
+          class: { active: _vm.status === "complete" },
           on: {
             click: function($event) {
-              return _vm.activate(_vm.customStatus)
+              return _vm.activate("complete")
             }
           }
         },
-        [
-          _c("div", { staticClass: "flex items-center text-sm" }, [
-            _c("div", { staticClass: "w-full sm:max-w-xs" }, [
-              _c("input", {
-                ref: "customStatus",
-                staticClass:
-                  "shadow-sm focus:ring-indigo-500 focus:border-indigo-500 block w-full sm:text-sm border-gray-300 rounded-md",
-                attrs: {
-                  type: "text",
-                  name: "status",
-                  placeholder: "Custom Status"
-                },
-                domProps: {
-                  value:
-                    _vm.status !== "cancelled" &&
-                    _vm.status !== "pending" &&
-                    _vm.status !== "complete"
-                      ? _vm.status
-                      : ""
-                },
-                on: { change: _vm.activateCustom }
-              })
-            ])
-          ])
-        ]
+        [_vm._m(2)]
       )
-    ]
+    ],
+    2
   )
 }
 var staticRenderFns = [
@@ -41115,7 +41581,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "flex items-center text-sm" }, [
-      _c("span", { staticClass: "ml-3 font-medium" }, [_vm._v("Complete")])
+      _c("span", { staticClass: "ml-3 font-medium" }, [_vm._v("Cancelled")])
     ])
   },
   function() {
@@ -41123,7 +41589,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "flex items-center text-sm" }, [
-      _c("span", { staticClass: "ml-3 font-medium" }, [_vm._v("Cancelled")])
+      _c("span", { staticClass: "ml-3 font-medium" }, [_vm._v("Complete")])
     ])
   }
 ]
