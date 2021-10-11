@@ -10,9 +10,13 @@ class TaskController extends Controller
 {
     public function index(Request $request)
     {
+       // dd($request->user()->tasks()->incomplete()->count());
         return TaskResource::collection(
           Task::with('sub_tasks')->where('user_id', $request->user()->id)->parents()->ordered()->orderBy('created_at', 'desc')->get()
-        );
+        )->additional([
+            'complete' => $request->user()->tasks()->complete()->count(),
+            'incomplete' => $request->user()->tasks()->incomplete()->count()
+        ]);
     }
 
     public function store(Request $request)
@@ -24,7 +28,10 @@ class TaskController extends Controller
             'name' => $request->name
         ]);
 
-        return new TaskResource($task);
+        return (new TaskResource($task))->additional([
+            'complete' => $request->user()->tasks()->complete()->count(),
+            'incomplete' => $request->user()->tasks()->incomplete()->count()
+        ]);
     }
 
     public function update(Task $task, Request $request)
@@ -37,7 +44,10 @@ class TaskController extends Controller
         $task->status = $request->status;
         $task->save();
 
-        return new TaskResource($task);
+        return (new TaskResource($task))->additional([
+            'complete' => $request->user()->tasks()->complete()->count(),
+            'incomplete' => $request->user()->tasks()->incomplete()->count()
+        ]);
     }
 
     public function destroy(Task $task, Request $request)
@@ -45,6 +55,27 @@ class TaskController extends Controller
         if ($request->user()->cannot('delete', $task)) {
             abort(403);
         }
-        return $task->delete();
+
+        $this->markChildren($task);
+
+        $task->delete();
+
+        return TaskResource::collection(
+            Task::with('sub_tasks')->where('user_id', $request->user()->id)->parents()->ordered()->orderBy('created_at', 'desc')->get()
+        )->additional([
+            'complete' => $request->user()->tasks()->complete()->count(),
+            'incomplete' => $request->user()->tasks()->incomplete()->count()
+        ]);
+    }
+
+    protected function markChildren($task)
+    {
+        foreach ($task->sub_tasks as $subTask) {
+            $subTask->parent_deleted = true;
+            $subTask->save();
+            if ($subTask->sub_tasks->count() > 0) {
+                $this->markChildren($subTask);
+            }
+        }
     }
 }

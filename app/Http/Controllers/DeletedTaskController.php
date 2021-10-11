@@ -28,7 +28,11 @@ class DeletedTaskController extends Controller
             abort(403);
         }
 
-        return $task->restore();
+       $task->restore();
+
+        $this->markChildren($task);
+
+        return $task;
     }
 
     public function delete($id, Request $request)
@@ -40,5 +44,16 @@ class DeletedTaskController extends Controller
         }
 
         return $task->forceDelete();
+    }
+
+    protected function markChildren($task)
+    {
+        foreach ($task->sub_tasks as $subTask) {
+            $subTask->parent_deleted = false;
+            $subTask->save();
+            if ($subTask->sub_tasks->count() > 0) {
+                $this->markChildren($subTask);
+            }
+        }
     }
 }

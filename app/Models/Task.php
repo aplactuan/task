@@ -30,4 +30,14 @@ class Task extends Model
     {
         return $this->hasMany(Task::class, 'parent_id', 'id');
     }
+
+    public function scopeComplete($query)
+    {
+        return $query->where('status', 'complete')->where('parent_deleted', false);
+    }
+
+    public function scopeIncomplete($query)
+    {
+        return $query->where('status', '!=', 'complete')->where('parent_deleted', false);
+    }
 }

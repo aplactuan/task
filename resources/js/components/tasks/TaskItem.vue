@@ -22,7 +22,7 @@
                 </div>
             </div>
             <div class="px-2 py-1" v-if="showAddSubTaskForm">
-                <new-task @addTask="addSubTask"></new-task>
+                <new-task @addTask="addSubTask" :custom_status="custom_statuses"></new-task>
             </div>
             <div class="px-2 py-1" v-if="showEditForm">
                 <edit-task :task="task" @editTask="editTaskHandler" :custom_statuses="custom_statuses"></edit-task>
@@ -35,6 +35,7 @@
                        :custom_statuses="custom_statuses"
                        @afterEdit="updateTasks"
                        @afterDelete="removeTask"
+                       @updateCount="updateCountRecursive"
             >
             </task-item>
         </div>
@@ -57,7 +58,7 @@
           EditTask
         },
         props: ['task', 'custom_statuses'],
-        emits: ['afterEdit', 'afterDelete'],
+        emits: ['afterEdit', 'afterDelete', 'updateCount'],
         name: 'task-item',
         mounted() {
           this.subTasks = this.task.sub_tasks;
@@ -71,29 +72,36 @@
                 this.showEditForm = !this.showEditForm;
                 this.showAddSubTaskForm = false;
             },
+            updateCountRecursive(complete, incomplete) {
+                this.$emit('updateCount', complete, incomplete);
+            },
             async addSubTask(form) {
                 const formData = {...form, parent_id: this.task.id}
                 await axios.post('/tasks', formData).then((response) => {
                     this.addSubTaskThenSort(response.data.data)
+                    console.log('updatedHere')
+                    this.$emit('updateCount', response.data.complete, response.data.incomplete);
                 });
                 this.showAddSubTaskForm = false;
             },
             async editTaskHandler(form) {
                 const formData = {...form, parent_id: this.task.id}
                 await axios.put(`/tasks/${this.task.id}`, formData).then((response) => {
-                    this.$emit('afterEdit', response.data.data);
+                    this.$emit('afterEdit', response.data.data, response.data.complete, response.data.incomplete);
                     this.showEditForm = false;
                 });
             },
             async deleteTask() {
-                await axios.delete(`/tasks/${this.task.id}`).then(() => {
+                await axios.delete(`/tasks/${this.task.id}`).then((response) => {
                     this.$emit('afterDelete', this.task);
+                    this.$emit('updateCount', response.data.complete, response.data.incomplete);
                 })
             },
-            updateTasks(task) {
+            updateTasks(task, complete, incomplete) {
                 this.removeTask(task);
                 this.subTasks.push(task);
                 this.sortTasks();
+                this.$emit('updateCount', complete, incomplete);
             },
             removeTask(task) {
                 const resIndex = this.subTasks.findIndex(res => res.id === task.id);
