@@ -2158,7 +2158,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
-//
 
 
 
@@ -71659,27 +71658,18 @@ var render = function() {
     _c(
       "div",
       { staticClass: "card px-2 py-3 mt-3" },
-      [
-        _vm._v(
-          "\n        " +
-            _vm._s(_vm.complete) +
-            " " +
-            _vm._s(_vm.incomplete) +
-            "\n        "
-        ),
-        _vm._l(_vm.tasks, function(task) {
-          return _c("task-item", {
-            key: task.id,
-            attrs: { custom_statuses: _vm.custom_statuses, task: task },
-            on: {
-              afterEdit: _vm.replaceTaskAndSort,
-              afterDelete: _vm.removeTask,
-              updateCount: _vm.updateCountHandler
-            }
-          })
+      _vm._l(_vm.tasks, function(task) {
+        return _c("task-item", {
+          key: task.id,
+          attrs: { custom_statuses: _vm.custom_statuses, task: task },
+          on: {
+            afterEdit: _vm.replaceTaskAndSort,
+            afterDelete: _vm.removeTask,
+            updateCount: _vm.updateCountHandler
+          }
         })
-      ],
-      2
+      }),
+      1
     )
   ])
 }

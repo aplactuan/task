@@ -20,7 +20,6 @@
             <new-task @addTask="addTaskHandler" :custom_status="custom_statuses"></new-task>
         </div>
         <div class="card px-2 py-3 mt-3">
-            {{ complete }} {{ incomplete }}
             <task-item v-for="task in tasks"
                        :key="task.id"
                        :custom_statuses="custom_statuses"
